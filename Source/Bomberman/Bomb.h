@@ -27,12 +27,12 @@ public:
 	void DidExplode_Implementation();
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bomb", Meta = (BlueprintProtected = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bomb", meta = (BlueprintProtected = "true"))
 	float TimeToExplode;
 
 private:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bomb", Meta = (AllowPrivateAccess = "true"))
-	class UStaticMeshComponent* BombMesh;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bomb", meta = (AllowPrivateAccess = "true"))
+		class UStaticMeshComponent* BombMesh;
 
 	UPROPERTY(VisibleAnywhere, Category = "Bomb")
 	float CurrentTimeToExplode;

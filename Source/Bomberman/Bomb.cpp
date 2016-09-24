@@ -3,7 +3,6 @@
 #include "Bomberman.h"
 #include "Bomb.h"
 
-
 // Sets default values
 ABomb::ABomb()
 {
@@ -11,6 +10,9 @@ ABomb::ABomb()
 	PrimaryActorTick.bCanEverTick = true;
 	TimeToExplode = 3.f;
 	CurrentTimeToExplode = TimeToExplode;
+
+	BombMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BombMesh"));
+	RootComponent = BombMesh;
 }
 
 // Called when the game starts or when spawned
@@ -40,5 +42,7 @@ void ABomb::DidExplode_Implementation()
 void ABomb::Explode() 
 {
 	FString BombDebugString = GetName();
-	UE_LOG(LogClass, Log, TEXT("Bomb will explode %s"), *BombDebugString);
+	FString DestroySuccess = (Destroy() ? "success" : "failed");
+
+	UE_LOG(LogClass, Log, TEXT("%s will explode: %s"), *BombDebugString, *DestroySuccess);
 }
