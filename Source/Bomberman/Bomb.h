@@ -5,6 +5,8 @@
 #include "GameFramework/Actor.h"
 #include "Bomb.generated.h"
 
+using namespace UP;
+
 UCLASS()
 class BOMBERMAN_API ABomb : public AActor
 {
@@ -21,6 +23,7 @@ public:
 	virtual void Tick( float DeltaSeconds ) override;
 
 	FORCEINLINE class UStaticMeshComponent* GetMesh() { return BombMesh; }
+	FORCEINLINE class USphereComponent* GetExplosionTrigger() { return ExplosionTrigger; }
 
 	UFUNCTION(BlueprintNativeEvent)
 	void DidExplode();
@@ -32,10 +35,19 @@ protected:
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bomb", meta = (AllowPrivateAccess = "true"))
-		class UStaticMeshComponent* BombMesh;
+	class UStaticMeshComponent* BombMesh;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bomb", meta = (AllowPrivateAccess = "true"))
+	class USphereComponent* ExplosionTrigger;
 
 	UPROPERTY(VisibleAnywhere, Category = "Bomb")
 	float CurrentTimeToExplode;
-
+	
 	void Explode();
+
+	UFUNCTION()
+	void TriggerEnter(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void TriggerExit(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 };
