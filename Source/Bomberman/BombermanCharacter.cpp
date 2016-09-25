@@ -64,7 +64,7 @@ void ABombermanCharacter::MoveForward(float Value)
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X) * -1;
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
 	}
 }
@@ -78,7 +78,7 @@ void ABombermanCharacter::MoveRight(float Value)
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y) * -1;
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
