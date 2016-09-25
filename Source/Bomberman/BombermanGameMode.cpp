@@ -4,6 +4,7 @@
 #include "BombermanGameMode.h"
 #include "BombermanPlayerController.h"
 #include "BombermanCharacter.h"
+#include "Kismet/GameplayStatics.h"
 
 ABombermanGameMode::ABombermanGameMode()
 {
@@ -16,4 +17,12 @@ ABombermanGameMode::ABombermanGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+}
+
+void ABombermanGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Create a seconds player
+	UGameplayStatics::CreatePlayer(this, 1);
 }
